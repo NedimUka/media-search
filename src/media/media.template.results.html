@@ -1,0 +1,10 @@
+<h1>RESULTS</h1>
+<div>
+    <span *ngFor="let item of results">
+        <img (click)="itemSelected($event, item)" (mouseenter)="mouseEnter('test')" [src]='item.url'> 
+        {{item.name}} 
+        {{item.country}} 
+        {{item.genre}} 
+        {{item.created}}
+    </span>
+</div>

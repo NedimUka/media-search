@@ -1,0 +1,54 @@
+<style type="text/css">
+  div.inline {
+    float: left;
+  }
+
+  div.right {
+    float: right;
+  }
+
+  div.main {
+    margin-left: 150px;
+    margin-right: auto;
+    width: 1200px;
+    max-width: 1200px;
+  }
+
+  .clearBoth {
+    clear: both;
+  }
+</style>
+
+
+<div class="inline" style=width:150px;height:600px>
+  <div style="background: yellow;width:150px;height:100px"></div>
+</div>
+<div>
+  <input #myInput placeholder="Item name..." [(ngModel)]="category" (input)="filterItem(myInput.value)" />
+  <div>
+    <select [(ngModel)]="genre" (ngModelChange)="onSelectGenre(genre)">
+      <option *ngFor="let genreDrop of genres" [value]="genreDrop">
+        {{ genreDrop }}
+      </option>
+    </select>
+  </div>
+  <p></p>
+  <div>{{ selected }}</div>
+  <div>
+    <select [(ngModel)]="country" (ngModelChange)="onSelectCountry(country)">
+      <option *ngFor="let countryDrop of countries" [value]="countryDrop">
+        {{ countryDrop }}
+      </option>
+    </select>
+  </div>
+  <p></p>
+  <button (click)="publish()">Publish</button>
+  <div>
+    <span *ngFor="let item of filteredItems">
+      <img (click)="itemSelected($event, item)" (mouseenter)="mouseEnter('test')" [src]='item.url'> 
+    </span>
+  </div>
+</div>
+<div class="right" style=width:150px;height:600px>
+  <div style="background: yellow;width:150px;height:100px"></div>
+</div>

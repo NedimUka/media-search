@@ -1,0 +1,47 @@
+[
+    {
+        "id" : 0,
+        "name": "Hamo",
+        "url": "media/Images/lana.png",
+        "genre": "Pop",
+        "country": "Germany",
+        "created": 1,
+        "modified": 0
+    },
+    {
+        "id" : 1,
+        "name": "Hamo",
+        "url": "media/Images/lana.png",
+        "genre": "Pop",
+        "country": "USA",
+        "created": 2,
+        "modified": 0
+    },
+    {
+        "id" : 2,
+        "name": "Meho",
+        "url": "media/Images/lana.png",
+        "genre": "Rock",
+        "country": "USA",
+        "created": 3,
+        "modified": 0
+    },
+    {
+        "id" : 3,
+        "name": "Jozo",
+        "url": "media/Images/lana.png",
+        "genre": "Jazz",
+        "country": "Germany",
+        "created": 4,
+        "modified": 0
+    },
+    {
+        "id" : 4,
+        "name": "Safet",
+        "url": "media/Images/lana.png",
+        "genre": "Jazz",
+        "country": "USA",
+        "created": 5,
+        "modified": 0
+    }
+]
