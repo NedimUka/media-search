@@ -7,7 +7,7 @@ import { ResultsService } from './media.service.results';
 })
 export class ResultsComponent {
     public results: Media[];
-    constructor(private resultsService: ResultsService) {}
+    constructor(private resultsService: ResultsService) { }
 
     ngOnInit(): void {
         this.results = this.resultsService.getResults();

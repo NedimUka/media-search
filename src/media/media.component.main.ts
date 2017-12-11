@@ -7,6 +7,7 @@ import { ResultsService } from './media.service.results';
 
 @Component({
   templateUrl: './media.template.main.html',
+  styleUrls: ['./media.style.main.css'],
   providers: [MediaService]
 })
 export class MediaComponent {
@@ -29,7 +30,8 @@ export class MediaComponent {
     this.countries = ['Germany', 'USA', 'France'];
     this.sortOrder = true;
     this._mediaService.getMedia()
-      .subscribe(media => {this.media = media;
+      .subscribe(media => {
+      this.media = media;
         this.assignCopy();
       });
   }
@@ -82,7 +84,7 @@ export class MediaComponent {
         item => item.country === this.selectedCountry);
     }
     this.filteredItems.sort(function (a, b) {
-      return sortByNewest ?  a.created + b.created : a.created - b.created;
+      return sortByNewest ? b.created - a.created : a.created - b.created;
     });
   }
 
@@ -93,12 +95,12 @@ export class MediaComponent {
 
   selectAll() {
     this.allSelected = !this.allSelected;
-    this.filteredItems.forEach( media => media.selected = this.allSelected);
+    this.filteredItems.forEach(media => media.selected = this.allSelected);
   }
 
   publish() {
     this._resultsService.setResults(Object.assign([], this.filteredItems)
-    .filter(media => media.selected));
+      .filter(media => media.selected));
     this._router.navigateByUrl('/results');
   }
 }

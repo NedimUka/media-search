@@ -7,7 +7,7 @@ export class ResultsService {
     public results: Media[];
 
     getResults() {
-       return this.results;
+        return this.results;
     }
 
     setResults(results: Media[]) {

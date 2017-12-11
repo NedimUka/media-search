@@ -1,10 +1,10 @@
 <h1>RESULTS</h1>
 <div>
-    <span *ngFor="let item of results">
-        <img style="height: 222px; width: 222px;" (click)="itemSelected($event, item)" [src]='item.url'> 
-        {{item.name}} 
-        {{item.country}} 
-        {{item.genre}} 
-        {{item.created}}
-    </span>
+    <div *ngFor="let item of results">
+        <img style="height: 222px; width: 222px;" (click)="itemSelected($event, item)" [src]='item.url'>
+        <div>Artist : {{item.name}}</div>
+        <div>Country : {{item.country}}</div>
+        <div>Genre : {{item.genre}}</div>
+        <div>Created : {{item.created}} </div>
+    </div>
 </div>
