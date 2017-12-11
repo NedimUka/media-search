@@ -16,33 +16,30 @@ export class MediaComponent {
 
   public genres: string[];
   public countries: string[];
-  public sortOrders: string[];
   public filterValue: string;
   public selectedGenre: string;
   public selectedCountry: string;
-  public sortOrder: string;
+  public sortOrder: boolean;
+  public allSelected: boolean = false;
   constructor(private _mediaService: MediaService, private _resultsService: ResultsService, private _router: Router) { }
 
   ngOnInit(): void {
     this.selectedItems = [];
-    this.genres = ['Pop', 'Rock', 'Jazz'];
-    this.countries = ['Germany', 'USA'];
-    this.sortOrders = ['Newest', 'Oldest'];
+    this.genres = ['Pop', 'Rock', 'Jazz', 'Rap'];
+    this.countries = ['Germany', 'USA', 'France'];
+    this.sortOrder = true;
     this._mediaService.getMedia()
-      .subscribe(media => this.media = media);
-    this.assignCopy();
+      .subscribe(media => {this.media = media;
+        this.assignCopy();
+      });
   }
+
   mouseEnter(test: string) {
     console.log('mouse enter : ' + test);
   }
 
   assignCopy() {
     this.filteredItems = Object.assign([], this.media);
-  }
-
-  itemSelected(event: any, media: Media) {
-    this.filteredItems[media.id].selected = true;
-    this.selectedItems.push(this.media[media.id]);
   }
 
   onSelectGenre(selection: string) {
@@ -52,24 +49,24 @@ export class MediaComponent {
 
   onSelectCountry(selection: string) {
     this.selectedCountry = selection;
-    this.filterItem(this.filterValue, !this.selectedCountry ? false : true, true, !this.sortOrder ? false : true);
+    this.filterItem(this.filterValue, !this.selectedGenre ? false : true, true, !this.sortOrder ? false : true);
   }
 
-  onSelectSortOrder(selection: string) {
-    this.sortOrder = selection;
-    this.filterItem(this.filterValue, !this.selectedGenre ? false : true, true, !this.sortOrder ? false : true);
+  onSelectSortOrder() {
+    this.sortOrder = !this.sortOrder;
+    this.filterItem(this.filterValue, !this.selectedGenre ? false : true, !this.selectedCountry ? false : true, this.sortOrder);
   }
 
   filterItem(value: string,
     filterByGenre: boolean,
     filterByCountry: boolean,
-    sortByCreater: boolean) {
+    sortByNewest: boolean) {
 
     if (!value) {
       this.assignCopy();
       this.filterValue = null;
     } else {
-    this.filterValue = value;
+      this.filterValue = value;
       this.filteredItems = Object.assign([], this.media).filter(
         item => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1
       );
@@ -77,20 +74,31 @@ export class MediaComponent {
 
     if (filterByGenre) {
       this.filteredItems = Object.assign([], this.filteredItems).filter(
-        item => item.genre.toLowerCase().indexOf(this.selectedGenre.toLowerCase()) > -1
-      );
+        item => item.genre === this.selectedGenre);
     }
 
     if (filterByCountry) {
       this.filteredItems = Object.assign([], this.filteredItems).filter(
-        item => item.country.toLowerCase().indexOf(this.selectedCountry.toLowerCase()) > -1
-      );
+        item => item.country === this.selectedCountry);
     }
-    this.filteredItems.sort(function(a, b){return a.created - b.created; });
+    this.filteredItems.sort(function (a, b) {
+      return sortByNewest ?  a.created + b.created : a.created - b.created;
+    });
+  }
+
+  itemSelected(event: any, media: Media) {
+    this.filteredItems.find(item => item.id === media.id).selected = true;
+    // this.selectedItems.push(this.media[media.id]);
+  }
+
+  selectAll() {
+    this.allSelected = !this.allSelected;
+    this.filteredItems.forEach( media => media.selected = this.allSelected);
   }
 
   publish() {
-    this._resultsService.setResults(this.selectedItems);
+    this._resultsService.setResults(Object.assign([], this.filteredItems)
+    .filter(media => media.selected));
     this._router.navigateByUrl('/results');
   }
 }

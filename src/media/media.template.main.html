@@ -7,6 +7,15 @@
     float: right;
   }
 
+  div.graymenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f5f5;
+    width: 150px;
+    height: 100px
+  }
+
   div.main {
     margin-left: 150px;
     margin-right: auto;
@@ -14,41 +23,167 @@
     max-width: 1200px;
   }
 
-  .clearBoth {
-    clear: both;
+  div.toolbar {
+    /* background: gray; */
+    height: 50px;
+    max-height: 50px;
+    width: 100%
+  }
+
+  .element {
+    margin: 15px
+  }
+
+  .gallery {
+    width: 80%;
+    padding-left: 160px;
+  }
+
+  .card-1 {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  }
+
+  .select-all-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+
+  .select-dropdown {
+    width: 140px
+  }
+
+  .container {
+    position: relative;
+  }
+
+  .imgA1 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+  }
+
+  .imgB1 {
+    position: absolute;
+    top: 70px;
+    left: 100px;
+    z-index: 3;
+  }
+
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+  }
+
+  .switch input {
+    display: none;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked+.slider {
+    background-color: #2196F3;
+  }
+
+  input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+
+  input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  /* Rounded sliders */
+
+  .slider.round {
+    border-radius: 20px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
   }
 </style>
 
 
-<div class="inline" style=width:150px;height:600px>
-  <div style="background: yellow;width:150px;height:100px"></div>
+<div class="inline" style="background: #f5f5f5;width:150px;height:600px">
+  <div style="background: #f4c337;width:150px;height:50px">
+    <img style="width:80px; height:30px; margin:10px" src="/media/Images/mdoc.png">
+  </div>
 </div>
-<div>
-  <input #myInput placeholder="Item name..." [(ngModel)]="category" (input)="filterItem(myInput.value)" />
-  <div>
-    <select [(ngModel)]="genre" (ngModelChange)="onSelectGenre(genre)">
+<div class="toolbar card-1">
+  <input class="element" #myInput placeholder="Search Library" [(ngModel)]="category" (input)="filterItem(myInput.value)" />
+</div>
+<div style="width: 80%; height: 50px">
+  <div class="inline element">
+    <select class="select-dropdown" [(ngModel)]="genre" (ngModelChange)="onSelectGenre(genre)">
+      <option disabled selected [value]="x">Genre</option>
       <option *ngFor="let genreDrop of genres" [value]="genreDrop">
         {{ genreDrop }}
       </option>
     </select>
   </div>
-  <p></p>
   <div>{{ selected }}</div>
-  <div>
-    <select [(ngModel)]="country" (ngModelChange)="onSelectCountry(country)">
+  <div class="inline element">
+    <select class="select-dropdown" [(ngModel)]="country" (ngModelChange)="onSelectCountry(country)">
+      <option disabled selected [value]="x">Country</option>
       <option *ngFor="let countryDrop of countries" [value]="countryDrop">
         {{ countryDrop }}
       </option>
     </select>
   </div>
-  <p></p>
-  <button (click)="publish()">Publish</button>
-  <div>
-    <span *ngFor="let item of filteredItems">
-      <img (click)="itemSelected($event, item)" (mouseenter)="mouseEnter('test')" [src]='item.url'> 
-    </span>
+  <div class="inline element">
+    <select class="select-dropdown" [(ngModel)]="sort" (ngModelChange)="onSelectSortOrder()">
+      <option selected [value]="true">Sort by: newest first</option>
+      <option [value]="false" >Sort by: oldest first</option>
+    </select>
+  </div>
+  <div class="right select-all-button">
+    <label class="switch">
+      <input type="checkbox" (click)="selectAll()">
+      <span class="slider round"></span>
+    </label>
   </div>
 </div>
 <div class="right" style=width:150px;height:600px>
-  <div style="background: yellow;width:150px;height:100px"></div>
+  <div class="graymenu">
+    <button style="margin: auto; width: 100px; height: 30px;color: white; background: rgb(85, 173, 231)" (click)="publish()">Publish</button>
+  </div>
+</div>
+
+<div>
+  <div class="gallery">
+    <span *ngFor="let item of filteredItems">
+      <img style="height: 222px; width: 222px;" (click)="itemSelected($event, item)" [src]='item.url'>
+    </span>
+  </div>
 </div>

@@ -1,47 +1,110 @@
 [
     {
         "id" : 0,
-        "name": "Hamo",
-        "url": "media/Images/lana.png",
+        "name": "Beck Morning Phase",
+        "url": "media/Images/beck.png",
         "genre": "Pop",
         "country": "Germany",
-        "created": 1,
+        "created": 895615200000,
         "modified": 0
     },
     {
         "id" : 1,
-        "name": "Hamo",
-        "url": "media/Images/lana.png",
+        "name": "Calvin Harris",
+        "url": "media/Images/calvin.png",
         "genre": "Pop",
-        "country": "USA",
-        "created": 2,
+        "country": "France",
+        "created": 958773600000,
         "modified": 0
     },
     {
         "id" : 2,
-        "name": "Meho",
-        "url": "media/Images/lana.png",
+        "name": "Imagine Dragons",
+        "url": "media/Images/imagine.png",
         "genre": "Rock",
         "country": "USA",
-        "created": 3,
+        "created": 990309600000,
         "modified": 0
     },
     {
         "id" : 3,
-        "name": "Jozo",
-        "url": "media/Images/lana.png",
-        "genre": "Jazz",
+        "name": "Katy Perry",
+        "url": "media/Images/katy.png",
+        "genre": "Pop",
         "country": "Germany",
-        "created": 4,
+        "created": 1305842400000,
         "modified": 0
     },
     {
         "id" : 4,
-        "name": "Safet",
-        "url": "media/Images/lana.png",
+        "name": "True",
+        "url": "media/Images/true.png",
         "genre": "Jazz",
         "country": "USA",
-        "created": 5,
+        "created": 1337464800000,
+        "modified": 0
+    }, 
+    {
+        "id" : 5,
+        "name": "Lana Delrey",
+        "url": "media/Images/lana.png",
+        "genre": "Pop",
+        "country": "Germany",
+        "created": 1526767200000,
+        "modified": 0
+    },
+    {
+        "id" : 6,
+        "name": "David Guetta",
+        "url": "media/Images/guetta.png",
+        "genre": "Pop",
+        "country": "France",
+        "created": 1432072800000,
+        "modified": 0
+    },
+    {
+        "id" : 7,
+        "name": "David Bowie",
+        "url": "media/Images/david.png",
+        "genre": "Rock",
+        "country": "USA",
+        "created": 548467800000,
+        "modified": 0
+    },
+    {
+        "id" : 8,
+        "name": "Eminem",
+        "url": "media/Images/eminem.png",
+        "genre": "Rap",
+        "country": "USA",
+        "created": 737848800000,
+        "modified": 0
+    },
+    {
+        "id" : 9,
+        "name": "Jimmi Handrix",
+        "url": "media/Images/jimi.png",
+        "genre": "Rock",
+        "country": "USA",
+        "created": 927151200000,
+        "modified": 0
+    },
+    {
+        "id" : 10,
+        "name": "Maddona",
+        "url": "media/Images/maddona.png",
+        "genre": "Pop",
+        "country": "France",
+        "created": 1053381600000,
+        "modified": 0
+    },
+    {
+        "id" : 11,
+        "name": "Nirvana",
+        "url": "media/Images/nirvana.png",
+        "genre": "Rock",
+        "country": "USA",
+        "created": 1148076000000,
         "modified": 0
     }
 ]
